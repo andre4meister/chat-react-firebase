@@ -1,38 +1,122 @@
-.App {
-  text-align: center;
+::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color: black;
+  font-size: 110%;
+  opacity: 1; /* Firefox */
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+body {
+  height: 100vh;
+}
+#root {
+  width: 100%;
+  height: 100%;
+}
+nav {
+  height: 8%;
+}
+.navbar {
+  display: flex;
+  justify-content: flex-end;
+  align-content: center;
+  width: 100%;
+}
+.navbar a {
+  align-self: center;
+  margin-right: 3%;
+  width: 6%;
+  height: 70%;
+  z-index: 2;
+  background-color: #3099fc;
+  border: 2px solid transparent;
+  border-radius: 8px;
+}
+.navbar a:hover {
+  cursor: pointer;
+  transform: scale(1.03);
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.login {
+  width: 100%;
+  height: 92%;
+  display: flex;
+  justify-content: center;
+  /*background-image: url("https://img.freepik.com/free-vector/illustration-with-young-people-talking_52683-29824.jpg?w=2000");*/
+}
+.login__button button {
+  align-self: center;
+  font-size: 120%;
+  z-index: 2;
+  margin-bottom: 30%;
+  background-color: #0d6efd;
+  border-radius: 11px;
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+.login__button:hover {
+  cursor: pointer;
+  transform: scale(1.02);
+}
+.login__img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 80%;
+}
+
+.chat {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  justify-content: end;
+  width: 60%;
+  height: 90%;
+  margin: auto;
+  border-radius: 15px;
+  /*background-color: #01143d;*/
+  background-color: lightblue;
 }
+.chat__textarea {
+  width: 99%;
+  margin: 0 auto;
+  background-color: #3099fc;
 
-.App-link {
-  color: #61dafb;
+  border-radius: 14px;
+  height: 15%;
+  border: 2px solid transparent;
 }
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.chat__button {
+  align-self: end;
+  width: 30%;
+  margin: 1%;
+  font-size: 100%;
+  background-color: dodgerblue;
+}
+.chat__messages {
+  height: 80%;
+  overflow-y: auto;
+}
+.message {
+  justify-content: space-between;
+  z-index: 2;
+  width: 98%;
+  height: 10%;
+  background-color: #3099fc;
+  border: 1px solid black;
+  margin: 4px auto;
+  border-radius: 10px;
+}
+.message__photo {
+  width: 8%;
+  border-radius: 100%;
 }
