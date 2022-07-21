@@ -11,6 +11,7 @@ const Chat = () => {
     const {auth,firestore,firebase} = useContext(Context)
     const [user] = useAuthState(auth)
     const [message, setMessage] = useState('')
+    const [writeMessage, setWriteMessage] = useState(false)
     const [messages, loading] = useCollectionData(firestore.collection('messages').orderBy('createdAt'))
     const sendMessage = async () => {
         firestore.collection('messages').add({
@@ -32,9 +33,16 @@ const Chat = () => {
             <div className={'chat__messages'}>
                 {messages.map( (m, i) => <Message m={m} user={user}/>)}
             </div>
-            <textarea className={'chat__textarea'} rows={1} value={message} placeholder={'  Write your message'}
-                onChange={ (e) => setMessage(e.target.value)}/>
-            <button className={'chat__button'} onClick={sendMessage}>Send message</button>
+            {writeMessage ?
+                <textarea className={'chat__textarea'} rows={1} value={message} placeholder={'  Write your message'}
+                          onChange={ (e) => setMessage(e.target.value)}
+                          onBlur={ () => setWriteMessage(false)}/>
+                :
+                <input className={'message_input'} value={message} type={'text'} onFocus={ () => setWriteMessage(true)}
+                    placeholder={'Click here to write a message'}/>
+            }
+            {message && <button className={'chat__button'} onClick={sendMessage}>Send message</button>}
+
         </main>
     );
 };
