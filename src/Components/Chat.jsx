@@ -5,13 +5,15 @@ import {useAuthState} from "react-firebase-hooks/auth";
 import {useCollectionData} from "react-firebase-hooks/firestore";
 import Preloader from "./Preloader/Preloader";
 import Message from "./Message";
+import send from '../assets/icons/send-message.png'
+import attach from '../assets/icons/attachment.png'
 
 const Chat = () => {
 
     const {auth,firestore,firebase} = useContext(Context)
     const [user] = useAuthState(auth)
     const [message, setMessage] = useState('')
-    const [writeMessage, setWriteMessage] = useState(false)
+    // const [writeMessage, setWriteMessage] = useState(false)
     const [messages, loading] = useCollectionData(firestore.collection('messages').orderBy('createdAt'))
     const sendMessage = async () => {
         firestore.collection('messages').add({
@@ -30,19 +32,20 @@ const Chat = () => {
     }
     return (
         <main className={'chat'}>
-            <div className={'chat__messages'}>
+            <div className={'chat__messages'} key={'chat__messages'}>
                 {messages.map( (m, i) => <Message m={m} user={user}/>)}
             </div>
-            {writeMessage ?
+            <div className={'chat__input'} key={'chat__input'}>
+                {!message && <img className={'chat__attach'}
+                     src={attach} alt={'attach file'}
+                />}
                 <textarea className={'chat__textarea'} rows={1} value={message} placeholder={'  Write your message'}
                           onChange={ (e) => setMessage(e.target.value)}
-                          onBlur={ () => setWriteMessage(false)}/>
-                :
-                <input className={'message_input'} value={message} type={'text'} onFocus={ () => setWriteMessage(true)}
-                    placeholder={'Click here to write a message'}/>
-            }
-            {message && <button className={'chat__button'} onClick={sendMessage}>Send message</button>}
-
+                />
+                {message && <img className={'chat__send'} onClick={sendMessage}
+                        src={send} alt={'send message'}
+                />}
+            </div>
         </main>
     );
 };
