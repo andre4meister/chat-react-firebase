@@ -10,7 +10,7 @@ import Preloader from "./Components/Preloader/Preloader";
 function App() {
 
     const {auth} = useContext(Context)
-    const [user, loading, error] = useAuthState(auth)
+    const [loading] = useAuthState(auth)
 
     if (loading) {
         return <Preloader/>

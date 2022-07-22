@@ -1,5 +1,5 @@
 import React from 'react';
-import {NavLink, useHistory, useNavigate} from "react-router-dom";
+import {NavLink} from "react-router-dom";
 import {useContext} from "react";
 import {Context} from "../index";
 import {useAuthState} from "react-firebase-hooks/auth";
